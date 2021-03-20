@@ -6,7 +6,6 @@
 
 function cmake-win-makefile() {
 cat <<'EOF'
-
 CMAKE = "/mnt/c/Program Files/CMake/bin/cmake.exe"
 CONFIG ?= "Debug"
 VERBOSE ?= 0

@@ -7,10 +7,26 @@ documentation for simplifying the process of using CMake within WSL2 with the
 ## Example C++ Setup
 
 Here we demonstrate setting up a simple C++ project inside a WSL2 terminal. If
-you haven't discovered it yet, [Alacritty](https://github.com/alacritty/alacritty)
+you haven't discovered them yet, [Alacritty](https://github.com/alacritty/alacritty)
 and [Windows Terminal](https://docs.microsoft.com/en-us/windows/terminal/) are
 both great alternatives to the default **cmd.exe** or even **PowerShell**.
 
+> **NOTE** Your source directory (indicated below as *MY_PROJECT*) **MUST**
+> physically be on/within an NTFS filesystem, and not a directory that lives
+> solely inside your WSL2 image! **This is essential!**
+
 ```sh
-echo "TODO"
+cd MY_PROJECT
+
+mkdir build-wsl
+cd build-wsl
+
+# Call our custom script with the parent directory as the root of the
+# source tree.
+cmake-wsl ..
+
+# The "cmake-wsl" script will have created a convenient Makefile acting
+# as wrapper for kicking off builds WITHOUT having to open up an IDE or
+# use msbuild.
+make
 ```
