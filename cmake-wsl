@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+# TODO: Add cmake-gui.exe support via the "ccmake-wsl" script.
+# TODO: Add infrastructure for a "local" directory (similar to *nix practices).
+# TODO: Add support for paralell builds using "-- /maxcpucount:4" as cmake.exe arguments.
+
+function cmake-win-makefile() {
+cat <<'EOF'
+
+CMAKE = "/mnt/c/Program Files/CMake/bin/cmake.exe"
+CONFIG ?= "Debug"
+VERBOSE ?= 0
+CMAKE_BUILD = $(CMAKE) --build . --config $(CONFIG) --target $(@)
+
+ifeq ($(VERBOSE), 1)
+CMAKE_BUILD += --verbose
+endif
+
+%:
+	$(CMAKE_BUILD)
+
+ALL_BUILD:
+EOF
+}
+
+# TODO: Replace the install directory with something configurable!
+/mnt/c/Program\ Files/CMake/bin/cmake.exe ${*} \
+	-DCMAKE_INSTALL_PREFIX="C:/users/cubic/dev/local"
+
+if [ ! -e Makefile ]; then
+	cmake-win-makefile > Makefile
+
+	echo "-- Created WSL2/MSVC Makefile"
+fi
