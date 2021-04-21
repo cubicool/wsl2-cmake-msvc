@@ -1,20 +1,18 @@
-project(YOUR_PROJECT)
+project(TEMPLATE)
 
-# cmake_minimum_required(VERSION 3.10 .. 3.19)
+cmake_minimum_required(VERSION 3.12...3.19)
 
-# find_package(ZLIB REQUIRED)
-# find_package(PNG REQUIRED)
+set(TEMPLATE_VERSION_MAJOR 0)
+set(TEMPLATE_VERSION_MINOR 0)
+set(TEMPLATE_VERSION_MICRO 1)
 
-# add_executable(YOUR_EXE source.cpp)
+string(JOIN "." TEMPLATE_VERSION
+	"${TEMPLATE_VERSION_MAJOR}"
+	"${TEMPLATE_VERSION_MINOR}"
+	"${TEMPLATE_VERSION_MICRO}"
+)
 
-# target_link_libraries(YOUR_EXE ${PNG_LIBRARIES} ${ZLIB_LIBRARIES})
-
-# install(TARGETS YOUR_EXE DESTINATION bin)
-
-# configure_file(
-# 	"${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules/cmake_uninstall.cmake.in"
-# 	"${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
-# 	IMMEDIATE @ONLY
-# )
-
-# add_custom_target(uninstall "${CMAKE_COMMAND}" -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake")
+# add_executable(ip-stats "test/ip-stats.c")
+# add_executable(tcp-stats "test/tcp-stats.c")
+# add_executable(browse-performance-counters "test/browse-performance-counters.c")
+# add_executable(net-iface-bytes "test/net-iface-bytes.c")

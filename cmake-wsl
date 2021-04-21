@@ -3,6 +3,7 @@
 # TODO: Add cmake-gui.exe support via the "ccmake-wsl" script.
 # TODO: Add infrastructure for a "local" directory (similar to *nix practices).
 # TODO: Add support for paralell builds using "-- /maxcpucount:4" as cmake.exe arguments.
+# TODO: Detect if the target filesystem is actually IN Windows!
 
 function cmake-win-makefile() {
 cat <<'EOF'
