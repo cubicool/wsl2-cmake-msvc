@@ -40,6 +40,9 @@ directory **NOTE** above!
 
 ## TODO
 
+= Consolidate all of my various WSL2 projects into one place and see if I can't
+  get some exposure from the [WSL](https://github.com/microsoft/WSL) project.
+
 - Better [policy](https://cmake.org/cmake/help/latest/manual/cmake-policies.7.html) support
 
 - Make creation of **install** and **uninstall** targets easier.

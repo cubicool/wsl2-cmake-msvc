@@ -4,6 +4,7 @@
 # TODO: Add infrastructure for a "local" directory (similar to *nix practices).
 # TODO: Add support for paralell builds using "-- /maxcpucount:4" as cmake.exe arguments.
 # TODO: Detect if the target filesystem is actually IN Windows!
+# TODO: Easy way to specify -G (Visual Studio 17 2022, Visual Studio 16 2019, etc).
 
 function cmake-win-makefile() {
 cat <<'EOF'
@@ -23,9 +24,34 @@ ALL_BUILD:
 EOF
 }
 
+# GENERATOR=""
+#
+# # TODO: Fix this awful hack!
+# if egrep -qi "2019|2022" <<< "${1}"; then
+# 	if [ "${1}" = "2019" ]; then
+# 		GENERATOR="-G \"Visual Studio 16 2019\""
+#
+# 	else
+# 		GENERATOR="-G \"Visual Studio 17 2022\""
+# 	fi
+#
+# 	shift 1
+# fi
+#
+# echo /mnt/c/Program\ Files/CMake/bin/cmake.exe ${GENERATOR} ${*}
+#
+# exit 0
+
+# GENERATOR="-G \"Visual Studio 16 2019\""
+# GENERATOR="-G \"Visual Studio 17 2022\""
+
 # TODO: Replace the install directory with something configurable!
-/mnt/c/Program\ Files/CMake/bin/cmake.exe ${*} \
-	-DCMAKE_INSTALL_PREFIX="C:/users/cubic/dev/local"
+# /mnt/c/Program\ Files/CMake/bin/cmake.exe ${GENERATOR} ${*}
+# /mnt/c/Program\ Files/CMake/bin/cmake.exe -G "Visual Studio 16 2019"
+/mnt/c/Program\ Files/CMake/bin/cmake.exe -G "Visual Studio 17 2022" \
+	-DCMAKE_BUILD_TYPE="Debug" \
+	-DCMAKE_INSTALL_PREFIX="D:/Dev/local" \
+	-DCMAKE_PREFIX_PATH="D:/Dev/local" ${*}
 
 if [ ! -e Makefile ]; then
 	cmake-win-makefile > Makefile
